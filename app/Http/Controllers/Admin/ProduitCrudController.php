@@ -85,6 +85,8 @@ class ProduitCrudController extends CrudController
         $this->crud->setFromDb();
     }
 
+    
+
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
