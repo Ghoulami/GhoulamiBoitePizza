@@ -6,7 +6,6 @@ use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
-use Illuminate\Support\Str;
 
 class Produit extends Model
 {
@@ -63,22 +62,11 @@ class Produit extends Model
     |--------------------------------------------------------------------------
     */
 
-    public function setImageAttribute($value)
-    {
-        $attribute_name = "imgPath";
-        $disk = "public";
-        $destination_path = "public/uploads/product_images/";
-
-        $this->uploadFileToDisk($value, $attribute_name, $disk, $destination_path);
-
-    // return $this->attributes[{$attribute_name}]; // uncomment if this is a translatable field
-    }
-
     public function setimgPathAttribute($value)
     {
         $attribute_name = "imgPath";
-        $disk = config('backpack.base.public'); // or use your own disk, defined in config/filesystems.php
-        $destination_path = "public/uploads/product_images/"; // path relative to the disk above
+        $disk = "public"; // or use your own disk, defined in config/filesystems.php
+        $destination_path = "uploads/product_images"; // path relative to the disk above
 
         // if the image was erased
     if ($value==null) {
@@ -99,7 +87,8 @@ class Produit extends Model
         // 2. Store the image on disk.
         Storage::disk($disk)->put($destination_path.'/'.$filename, $image->stream());
         // 3. Save the path to the database
-        $this->attributes[$attribute_name] = /*$destination_path.'/'.*/$filename;
+        $this->attributes[$attribute_name] = $destination_path.'/'.$filename;
+         
     }
     }
 }
