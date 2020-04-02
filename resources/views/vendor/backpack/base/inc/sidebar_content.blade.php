@@ -2,4 +2,3 @@
 <li class="nav-item"><a class="nav-link" href="{{ backpack_url('dashboard') }}"><i class="fa fa-dashboard nav-icon"></i> {{ trans('backpack::base.dashboard') }}</a></li>
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('categorie') }}'><i class='nav-icon fa fa-tags'></i> Categories</a></li>
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('produit') }}'><i class='nav-icon fa fa-cutlery'></i> Produits</a></li>
-<i class="fas fa-utensils"></i>

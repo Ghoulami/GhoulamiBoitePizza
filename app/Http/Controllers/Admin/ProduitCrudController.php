@@ -28,14 +28,59 @@ class ProduitCrudController extends CrudController
 
     protected function setupListOperation()
     {
-        // TODO: remove setFromDb() and manually define Columns, maybe Filters
-        $this->crud->setFromDb();
+        $f1 = [
+            'name' => 'nom',
+            'type' => 'text',
+            'label' => 'Nom',
+        ];
+        $f2 = [
+            'name' => 'prix',
+            'type' => 'text',
+            'label' => 'Prix',
+        ];
+        $f3 = [
+            'name' => 'isPromo',
+            'type' => 'boolean',
+            'label' => 'In promo',
+        ];
+        $f4 = [
+            'name' => 'imgPath',
+            'type' => 'image',
+            'label' => 'Image',
+            'prefix' => 'storage/',
+            'height' => '80px'
+        ];
+        $f5 = [
+            'name' => 'category.nomCategorie',
+            'type' => 'text',
+            'label' => 'Category'
+        ];
+        $this->crud->addColumns([$f1, $f2, $f3, $f4, $f5]);
     }
 
     protected function setupCreateOperation()
     {
-        $this->crud->setValidation(ProduitRequest::class);
+        $this->crud->addField([
+            'label' => "ImgPath",
+            'name' => "imgPath",
+            'type' => 'image',
+            'upload' => true,
+            'crop' => true, // set to true to allow cropping, false to disable
+            'aspect_ratio' => 1, ]);
+        
+        CRUD::addField([  // Select2
+            'label'     => 'Category',
+            'type'      => 'select2',
+            'name'      => 'category_id', // the db column for the foreign key
+            'entity'    => 'category', // the method that defines the relationship in your Model
+            'attribute' => 'nomCategorie', // foreign key attribute that is shown to user
+            // 'wrapperAttributes' => [
+            //     'class' => 'form-group col-md-6'
+            //   ], // extra HTML attributes for the field wrapper - mostly for resizing fields
+            'tab' => 'Category',        ]);
 
+        $this->crud->setValidation(ProduitRequest::class);
+       
         // TODO: remove setFromDb() and manually define Fields
         $this->crud->setFromDb();
     }
