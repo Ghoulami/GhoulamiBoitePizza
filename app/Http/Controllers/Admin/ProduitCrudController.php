@@ -66,8 +66,9 @@ class ProduitCrudController extends CrudController
             'type' => 'image',
             'upload' => true,
             'crop' => true, // set to true to allow cropping, false to disable
-            'aspect_ratio' => 1, ]);
-        
+            'aspect_ratio' => 1,
+        ]);
+
         CRUD::addField([  // Select2
             'label'     => 'Category',
             'type'      => 'select2',
@@ -77,18 +78,71 @@ class ProduitCrudController extends CrudController
             // 'wrapperAttributes' => [
             //     'class' => 'form-group col-md-6'
             //   ], // extra HTML attributes for the field wrapper - mostly for resizing fields
-            'tab' => 'Category',        ]);
+            'tab' => 'Category',
+        ]);
 
         $this->crud->setValidation(ProduitRequest::class);
-       
+
         // TODO: remove setFromDb() and manually define Fields
         $this->crud->setFromDb();
     }
 
-    
+
 
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
+    }
+
+    protected function setupShowOperation()
+    {
+
+        $this->crud->set('show.setFromDb', false);
+
+        $f1 = [
+            'name' => 'imgPath',
+            'type' => 'image',
+            'label' => 'Image',
+            'prefix' => 'storage/',
+            'height' => '300px'
+        ];
+
+        $f2 = [
+            'name' => 'name',
+            'type' => 'text',
+            'label' => 'Name',
+        ];
+        $f3 = [
+            'name' => 'prix',
+            'label' => 'Prix',
+            'type' => 'text',
+        ];
+        $f4 = [
+            'name' => 'remise',
+            'type' => 'text',
+            'label' => 'Remise',
+        ];
+        $f5 = [
+            'name' => 'date_debut',
+            'type' => 'date',
+            'label' => 'Date debut',
+        ];
+        $f6 = [
+            'name' => 'date_fin',
+            'type' => 'date',
+            'label' => 'Date in',
+        ];
+        $f7 = [
+            'name' => 'isPromo',
+            'type' => 'boolean',
+            'label' => 'In promo',
+        ];
+        $f8 = [
+            'name' => 'category.nomCategorie',
+            'type' => 'text',
+            'label' => 'Category',
+        ];
+
+        $this->crud->addColumns([$f1, $f2, $f3, $f4, $f5, $f6, $f7, $f8]);
     }
 }
