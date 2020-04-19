@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use App\Http\Requests\Request;
 use Illuminate\Foundation\Http\FormRequest;
 
-class ClientRequest extends FormRequest
+class ClientUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -38,7 +38,7 @@ class ClientRequest extends FormRequest
                 'regex:/[-@$!%*#?&]/', // must contain a special character
             ],  
             'adresse' => 'required',
-            'start_date' => 'required | date',
+            'start_date' => 'required|date',
             'ca' => 'required | digits',
             'login'=> 'required',
         ];

@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Support\Str;
 use App\Http\Requests\ClientRequest;
+use App\Http\Requests\ClientUpdateRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
+use Illuminate\Support\Facades\Hash;
 
 /**
  * Class ClientCrudController
@@ -19,6 +21,9 @@ class ClientCrudController extends CrudController
     use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation { store as traitStore; }
+    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation { update as traitUpdate ; }
+
 
     public function setup()
     {
@@ -30,7 +35,7 @@ class ClientCrudController extends CrudController
     protected function setupListOperation()
     {
         
-        $f1 = [
+        $col1 = [
             'name' => 'imgPath',
             'type' => 'image',
             'label' => 'Image',
@@ -38,59 +43,103 @@ class ClientCrudController extends CrudController
             'height' => '80px'
         ];
 
-        $f2 = [
+        $col2 = [
             'name' => 'nom',
             'type' => 'text',
             'label' => 'Nom',
         ];
 
-        $f10 = [
+        $col10 = [
             'name' => 'prenom',
             'type' => 'text',
             'label' => 'Prenom',
         ];
         
-        $f3 = [
+        $col3 = [
             'name' => 'email',
             'label' => 'email',
             'type' => 'text',
         ];
         
-        $f4 = [
+        $col4 = [
             'name' => 'adresse',
             'type' => 'text',
             'label' => 'adresse',
         ];
         
-        $f5 = [
+        $col5 = [
             'name' => 'start_date',
             'type' => 'date',
             'label' => 'Date debut',
         ];
         
-        $f6 = [
+        $col6 = [
             'name' => 'login',
             'type' => 'text',
             'label' => 'login',
         ];
         
-        $f7 = [
+        $col7 = [
             'name' => 'ca',
             'type' => 'text',
             'label' => 'Ca',
         ];
 
-        $this->crud->addColumns([$f1,$f10,$f2,$f3,$f5,$f6]);
+        $this->crud->addColumns([$col1,$col10,$col2,$col3,$col5,$col6]);
         // TODO: remove setFromDb() and manually define Columns, maybe Filters
         //$this->crud->setFromDb();
     }
 
+     /**
+     * Store a newly created resource in the database.
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function Store()
+    {
+        $this->crud->request = $this->crud->validateRequest();
+        $this->crud->request = $this->handleMotdepasseInput($this->crud->request);
+        $this->crud->unsetValidation(); // validation has already been run
+
+        return $this->traitStore();
+    }
+
+    /**
+     * Update the specified resource in the database.
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function update()
+    {
+        $this->crud->request = $this->crud->validateRequest();
+        $this->crud->request = $this->handleMotdepasseInput($this->crud->request);
+        $this->crud->unsetValidation(); // validation has already been run
+
+        return $this->traitUpdate();
+    }
+
+    /**
+     * Handle password input fields.
+     */
+    protected function handleMotdepasseInput($request)
+    {
+       
+        // Encrypt password if specified.
+        if ($request->input('motdepasse')) {
+            $request->request->set('motdepasse', Hash::make($request->input('motdepasse')));
+        } else {
+            $request->request->remove('motdepasse');
+        }
+
+        return $request;
+    }
+
+
     protected function setupCreateOperation()
     {
 
-
         $this->crud->setValidation(ClientRequest::class);
-        $f1 = [
+        $col1 = [
             'name' => 'imgPath',
             'type' => 'image',
             'label' => 'Image',
@@ -98,54 +147,54 @@ class ClientCrudController extends CrudController
             'height' => '300px'
         ];
 
-        $f2 = [
+        $col2 = [
             'name' => 'nom',
             'type' => 'text',
             'label' => 'Nom',
         ];
 
-        $f3 = [
+        $col3 = [
             'name' => 'prenom',
             'type' => 'text',
             'label' => 'Prenom',
         ];
 
-        $f4 = [
+        $col4 = [
             'name' => 'email',
             'label' => 'email',
             'type' => 'text',
         ];
-        $f5 = [
+        $col5 = [
             'name' => 'adresse',
-            'type' => 'text',
+            'type' => 'address_algolia',
             'label' => 'adresse',
         ];
-        $f6 = [
+        $col6 = [
             'name' => 'start_date',
             'type' => 'date',
             'label' => 'Date debut',
         ];
 
-        $f7 = [
+        $col7 = [
             'name' => 'ca',
             'type' => 'text',
             'label' => 'Ca',
         ];
 
-        $f8 = [
+        $col8 = [
             'name' => 'login',
             'type' => 'text',
             'label' => 'login',
         ];
 
-        $f9 = [
+        $col9 = [
             'name' => 'motdepasse',
             'type' => 'password',
             'label' => 'Mot de pass',
             'default'    => Str::random(8),
         ];
         
-        $this->crud->addFields([$f1, $f2,$f3, $f4, $f5, $f6, $f7,$f8, $f9]);
+        $this->crud->addFields([$col1, $col2,$col3, $col4 ,$col8, $col9, $col5, $col6, $col7]);
 
         // TODO: remove setFromDb() and manually define Fields
         //$this->crud->setFromDb();
@@ -153,16 +202,8 @@ class ClientCrudController extends CrudController
 
     protected function setupUpdateOperation()
     {
-        
-        $this->setupCreateOperation();
-    }
-
-    protected function setupShowOperation()
-    {
-
-        $this->crud->set('show.setFromDb', false);
-
-        $f1 = [
+        $this->crud->setValidation(ClientUpdateRequest::class);
+        $col1 = [
             'name' => 'imgPath',
             'type' => 'image',
             'label' => 'Image',
@@ -170,44 +211,108 @@ class ClientCrudController extends CrudController
             'height' => '300px'
         ];
 
-        $f2 = [
+        $col2 = [
             'name' => 'nom',
             'type' => 'text',
             'label' => 'Nom',
         ];
 
-        $f8 = [
+        $col3 = [
             'name' => 'prenom',
             'type' => 'text',
             'label' => 'Prenom',
         ];
 
-        $f3 = [
+        $col4 = [
             'name' => 'email',
             'label' => 'email',
             'type' => 'text',
         ];
-        $f4 = [
+        $col5 = [
             'name' => 'adresse',
-            'type' => 'text',
+            'type' => 'address_algolia',
             'label' => 'adresse',
         ];
-        $f5 = [
+        $col6 = [
             'name' => 'start_date',
             'type' => 'date',
             'label' => 'Date debut',
         ];
-        $f6 = [
-            'name' => 'login',
-            'type' => 'text',
-            'label' => 'login',
-        ];
-        $f7 = [
+
+        $col7 = [
             'name' => 'ca',
             'type' => 'text',
             'label' => 'Ca',
         ];
 
-        $this->crud->addColumns([$f1, $f2,$f8,$f3, $f4, $f5, $f6, $f7]);
+        $col8 = [
+            'name' => 'login',
+            'type' => 'text',
+            'label' => 'login',
+        ];
+
+        $col9 = [
+            'name' => 'motdepasse',
+            'type' => 'password',
+            'label' => 'Mot de pass',
+            'default'    => Str::random(8),
+        ];
+        
+        $this->crud->addFields([$col1, $col2,$col3, $col4,$col8, $col9, $col5, $col6, $col7]);
+    }
+
+
+    protected function setupShowOperation()
+    {
+
+        $this->crud->set('show.setFromDb', false);
+
+        $col1 = [
+            'name' => 'imgPath',
+            'type' => 'image',
+            'label' => 'Image',
+            'prefix' => 'storage/',
+            'height' => '300px'
+        ];
+
+        $col2 = [
+            'name' => 'nom',
+            'type' => 'text',
+            'label' => 'Nom',
+        ];
+
+        $col8 = [
+            'name' => 'prenom',
+            'type' => 'text',
+            'label' => 'Prenom',
+        ];
+
+        $col3 = [
+            'name' => 'email',
+            'label' => 'email',
+            'type' => 'text',
+        ];
+        $col4 = [
+            'name' => 'adresse',
+            'type' => 'text',
+            'label' => 'adresse',
+        ];
+        $col5 = [
+            'name' => 'start_date',
+            'type' => 'date',
+            'label' => 'Date debut',
+        ];
+        $col6 = [
+            'name' => 'login',
+            'type' => 'text',
+            'label' => 'login',
+        ];
+        $col7 = [
+            'name' => 'ca',
+            'type' => 'text',
+            'label' => 'Ca',
+        ];
+
+        $this->crud->addColumns([$col1, $col2,$col8,$col3, $col4, $col5, $col6, $col7]);
     }
 }

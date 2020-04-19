@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\ProduitRequest;
+use App\Http\Requests\ProduitUpdateRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
@@ -29,38 +30,55 @@ class ProduitCrudController extends CrudController
     protected function setupListOperation()
     {
         $f1 = [
-            'name' => 'nom',
-            'type' => 'text',
-            'label' => 'Nom',
-        ];
-        $f2 = [
-            'name' => 'prix',
-            'type' => 'text',
-            'label' => 'Prix',
-        ];
-        $f3 = [
-            'name' => 'isPromo',
-            'type' => 'boolean',
-            'label' => 'In promo',
-        ];
-        $f4 = [
             'name' => 'imgPath',
             'type' => 'image',
             'label' => 'Image',
             'prefix' => 'storage/',
             'height' => '80px'
         ];
+
+        $f2 = [
+            'name' => 'nom',
+            'type' => 'text',
+            'label' => 'Nom',
+        ];
+        $f3 = [
+            'name' => 'prix',
+            'label' => 'Prix',
+            'type' => 'text',
+        ];
+        $f4 = [
+            'name' => 'remise',
+            'type' => 'text',
+            'label' => 'Remise',
+        ];
         $f5 = [
+            'name' => 'date_debut',
+            'type' => 'date',
+            'label' => 'Date debut',
+        ];
+        $f6 = [
+            'name' => 'date_fin',
+            'type' => 'date',
+            'label' => 'Date in',
+        ];
+        $f7 = [
+            'name' => 'isPromo',
+            'type' => 'boolean',
+            'label' => 'In promo',
+        ];
+        $f8 = [
             'name' => 'category.nomCategorie',
             'type' => 'text',
-            'label' => 'Category'
+            'label' => 'Category',
         ];
-        $this->crud->addColumns([$f1, $f2, $f3, $f4, $f5]);
+
+        $this->crud->addColumns([$f1, $f2, $f3, $f4, $f5, $f6, $f7, $f8]);
     }
 
     protected function setupCreateOperation()
     {
-        $this->crud->addField([
+        /* $this->crud->addField([
             'label' => "ImgPath",
             'name' => "imgPath",
             'type' => 'image',
@@ -79,19 +97,124 @@ class ProduitCrudController extends CrudController
             //     'class' => 'form-group col-md-6'
             //   ], // extra HTML attributes for the field wrapper - mostly for resizing fields
             'tab' => 'Category',
-        ]);
+        ]); */
 
         $this->crud->setValidation(ProduitRequest::class);
+        $f1 = [
+            'name' => 'imgPath',
+            'type' => 'image',
+            'label' => 'Image',
+            'prefix' => 'storage/',
+            'height' => '300px'
+        ];
 
+        $f2 = [
+            'name' => 'nom',
+            'type' => 'text',
+            'label' => 'Nom',
+        ];
+        $f3 = [
+            'name' => 'prix',
+            'label' => 'Prix',
+            'type' => 'text',
+        ];
+        $f4 = [
+            'name' => 'remise',
+            'type' => 'text',
+            'label' => 'Remise',
+        ];
+        $f5 = [
+            'name' => 'date_debut',
+            'type' => 'date',
+            'label' => 'Date debut',
+        ];
+        $f6 = [
+            'name' => 'date_fin',
+            'type' => 'date',
+            'label' => 'Date in',
+        ];
+        $f7 = [
+            'name' => 'isPromo',
+            'type' => 'boolean',
+            'label' => 'In promo',
+        ];
+        $f8 = [
+            'label'     => 'Category',
+            'type'      => 'select2',
+            'name'      => 'category_id', // the db column for the foreign key
+            'entity'    => 'category',
+            'attribute' => 'nomCategorie', // foreign key attribute that is shown to user
+            // 'wrapperAttributes' => [
+            //     'class' => 'form-group col-md-6'
+            //   ], // extra HTML attributes for the field wrapper - mostly for resizing fields
+            'tab' => 'Category',
+        ];
+        
+        $this->crud->addFields([$f1, $f2, $f3, $f4, $f5, $f6, $f7, $f8]);
         // TODO: remove setFromDb() and manually define Fields
-        $this->crud->setFromDb();
+        //$this->crud->setFromDb();
     }
 
 
 
     protected function setupUpdateOperation()
     {
-        $this->setupCreateOperation();
+        
+        $this->crud->setValidation(ProduitUpdateRequest::class);
+        $f1 = [
+            'name' => 'imgPath',
+            'type' => 'image',
+            'label' => 'Image',
+            'prefix' => 'storage/',
+            'height' => '300px'
+        ];
+
+        $f2 = [
+            'name' => 'nom',
+            'type' => 'text',
+            'label' => 'Nom',
+        ];
+        $f3 = [
+            'name' => 'prix',
+            'label' => 'Prix',
+            'type' => 'text',
+        ];
+        $f4 = [
+            'name' => 'remise',
+            'type' => 'text',
+            'label' => 'Remise',
+        ];
+        $f5 = [
+            'name' => 'date_debut',
+            'type' => 'date',
+            'label' => 'Date debut',
+        ];
+        $f6 = [
+            'name' => 'date_fin',
+            'type' => 'date',
+            'label' => 'Date in',
+        ];
+        $f7 = [
+            'name' => 'isPromo',
+            'type' => 'boolean',
+            'label' => 'In promo',
+        ];
+        $f8 = [
+            'label'     => 'Category',
+            'type'      => 'select2',
+            'name'      => 'category_id', // the db column for the foreign key
+            'entity'    => 'category',
+            'attribute' => 'nomCategorie', // foreign key attribute that is shown to user
+            // 'wrapperAttributes' => [
+            //     'class' => 'form-group col-md-6'
+            //   ], // extra HTML attributes for the field wrapper - mostly for resizing fields
+            'tab' => 'Category',
+        ];
+        
+        $this->crud->addFields([$f1, $f2, $f3, $f4, $f5, $f6, $f7, $f8]);
+
+        // TODO: remove setFromDb() and manually define Fields
+        //$this->crud->setFromDb();
     }
 
     protected function setupShowOperation()
@@ -108,7 +231,7 @@ class ProduitCrudController extends CrudController
         ];
 
         $f2 = [
-            'name' => 'name',
+            'name' => 'nom',
             'type' => 'text',
             'label' => 'Name',
         ];

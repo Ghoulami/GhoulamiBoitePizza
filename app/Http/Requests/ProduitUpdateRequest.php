@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use App\Http\Requests\Request;
 use Illuminate\Foundation\Http\FormRequest;
 
-class ClientRequest extends FormRequest
+class ProduitUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,20 +27,10 @@ class ClientRequest extends FormRequest
     {
         return [
             'nom' => 'required | alpha',
-            'prenom' => 'required | alpha',
-            'email'    => 'required|email',
-            'motdepasse' => [
-                'required',
-                'min:8',             // must be at least 10 characters in length
-                'regex:/[a-z]/',      // must contain at least one lowercase letter
-                'regex:/[A-Z]/',      // must contain at least one uppercase letter
-                'regex:/[0-9]/',      // must contain at least one digit
-                'regex:/[-@$!%*#?&]/', // must contain a special character
-            ],  
-            'adresse' => 'required',
-            'start_date' => 'required | date',
-            'ca' => 'required | digits',
-            'login'=> 'required',
+            'prix' => 'required | digits',
+            'remise' => 'required',
+            'date_debut' => 'required | date',
+            'date_fin' => 'required | date'
         ];
     }
 
