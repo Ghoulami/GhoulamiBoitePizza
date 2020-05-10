@@ -40,7 +40,10 @@ class Client extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-
+    public function commentaire()
+    {
+        return $this->hasMany('App\Models\Commentaire', 'id');
+    }
     /*
     |--------------------------------------------------------------------------
     | SCOPES

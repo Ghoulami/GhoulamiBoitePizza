@@ -34,7 +34,10 @@ class Categorie extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-
+    public function produit()
+    {
+        return $this->hasMany('App\Models\Produit', 'id');
+    }
     /*
     |--------------------------------------------------------------------------
     | SCOPES

@@ -39,7 +39,7 @@ class ClientRequest extends FormRequest
             ],  
             'adresse' => 'required',
             'start_date' => 'required | date',
-            'ca' => 'required | digits',
+            'ca' => 'required | numeric',
             'login'=> 'required',
         ];
     }
