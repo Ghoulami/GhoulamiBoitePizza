@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\ProduitRequest;
 use App\Http\Requests\ProduitUpdateRequest;
+use App\Models\Categorie;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
@@ -72,8 +73,16 @@ class ProduitCrudController extends CrudController
             'type' => 'text',
             'label' => 'Category',
         ];
+        $f9 = [ // n-n relationship (with pivot table)
+            'label'     => 'Element de base', // Table column heading
+            'type'      => 'select_multiple',
+            'name'      => 'element', // the method that defines the relationship in your Model
+            'entity'    => 'element', // the method that defines the relationship in your Model
+            'attribute' => 'nomElem', // foreign key attribute that is shown to user
+            'model'     => 'App\Models\element', // foreign key model
+        ];
 
-        $this->crud->addColumns([$f1, $f2, $f3, $f4, $f5, $f6, $f7, $f8]);
+        $this->crud->addColumns([$f1, $f2, $f3,$f4, $f5, $f6, $f7, $f8 , $f9 ]);
     }
 
     protected function setupCreateOperation()
@@ -150,7 +159,18 @@ class ProduitCrudController extends CrudController
             'tab' => 'Category',
         ];
         
-        $this->crud->addFields([$f1, $f2, $f3, $f4, $f5, $f6, $f7, $f8]);
+        $f9 =[ // n-n relationship (with pivot table)
+            'label'     => 'Element de base', // Table column heading
+            'type'      => 'checklist',
+            'name'      => 'element', // the method that defines the relationship in your Model
+            'entity'    => 'element', // the method that defines the relationship in your Model
+            'attribute' => 'nomElem', // foreign key attribute that is shown to user
+            'model'     => 'App\Models\element',
+            'pivot'            => true, // on create&update, do you need to add/delete pivot table entries?]
+            'number_columns'   => 3, //can be 1,2,3,4,6 // foreign key model
+        ];
+        
+        $this->crud->addFields([$f1, $f2, $f3, $f4, $f5, $f6, $f7, $f8,$f9]);
         // TODO: remove setFromDb() and manually define Fields
         //$this->crud->setFromDb();
     }
@@ -210,8 +230,19 @@ class ProduitCrudController extends CrudController
             //   ], // extra HTML attributes for the field wrapper - mostly for resizing fields
             'tab' => 'Category',
         ];
+
+        $f9 =[ // n-n relationship (with pivot table)
+            'label'     => 'Element de base', // Table column heading
+            'type'      => 'checklist',
+            'name'      => 'element', // the method that defines the relationship in your Model
+            'entity'    => 'element', // the method that defines the relationship in your Model
+            'attribute' => 'nomElem', // foreign key attribute that is shown to user
+            'model'     => 'App\Models\element',
+            'pivot'            => true, // on create&update, do you need to add/delete pivot table entries?]
+            'number_columns'   => 3, //can be 1,2,3,4,6 // foreign key model
+        ];
         
-        $this->crud->addFields([$f1, $f2, $f3, $f4, $f5, $f6, $f7, $f8]);
+        $this->crud->addFields([$f1, $f2, $f3, $f4, $f5, $f6, $f7, $f8,$f9]);
 
         // TODO: remove setFromDb() and manually define Fields
         //$this->crud->setFromDb();
@@ -265,7 +296,23 @@ class ProduitCrudController extends CrudController
             'type' => 'text',
             'label' => 'Category',
         ];
+        $f9 = [ // n-n relationship (with pivot table)
+            'label'     => 'Element de base', // Table column heading
+            'type'      => 'select_multiple',
+            'name'      => 'element', // the method that defines the relationship in your Model
+            'entity'    => 'element', // the method that defines the relationship in your Model
+            'attribute' => 'nomElem', // foreign key attribute that is shown to user
+            'model'     => 'App\Models\element', // foreign key model
+        ];
 
-        $this->crud->addColumns([$f1, $f2, $f3, $f4, $f5, $f6, $f7, $f8]);
+
+        $this->crud->addColumns([$f1, $f2, $f3, $f4, $f5, $f6, $f7, $f8,$f9]);
+    }
+
+    function indexPizzas() {
+        $pizzas = Categorie::find(2)->produit;
+        return view('pizzas' , [
+            'pizzas' =>$pizzas
+        ]);
     }
 }

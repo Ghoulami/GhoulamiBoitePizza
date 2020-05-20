@@ -44,6 +44,21 @@ class Client extends Model
     {
         return $this->hasMany('App\Models\Commentaire', 'id');
     }
+
+    public function produit()
+    {
+        return $this->belongsToMany('App\Models\Produit', 'favorites​', 'client_id', 'produit_id');
+    }
+
+    public function message()
+    {
+        return $this->hasMany('App\Models\Message','id');
+    }
+
+    public function rating()
+    {
+        return $this->hasOne('App\Rating');
+    }
     /*
     |--------------------------------------------------------------------------
     | SCOPES

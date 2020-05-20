@@ -36,7 +36,7 @@ class Categorie extends Model
     */
     public function produit()
     {
-        return $this->hasMany('App\Models\Produit', 'id');
+        return $this->hasMany(Produit::class , 'category_id' , 'id');
     }
     /*
     |--------------------------------------------------------------------------

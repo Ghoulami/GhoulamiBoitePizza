@@ -193,8 +193,17 @@ class ClientCrudController extends CrudController
             'label' => 'Mot de pass',
             'default'    => Str::random(8),
         ];
-        
-        $this->crud->addFields([$col1, $col2,$col3, $col4 ,$col8, $col9, $col5, $col6, $col7]);
+        $col10 =[ // n-n relationship (with pivot table)
+            'label'     => 'favories', // Table column heading
+            'type'      => 'checklist',
+            'name'      => 'produit', // the method that defines the relationship in your Model
+            'entity'    => 'produit', // the method that defines the relationship in your Model
+            'attribute' => 'nom', // foreign key attribute that is shown to user
+            'model'     => 'App\Models\produit', 
+            'pivot'            => true, // on create&update, do you need to add/delete pivot table entries?]
+            'number_columns'   => 3, //can be 1,2,3,4,6// foreign key model
+        ];
+        $this->crud->addFields([$col1, $col2,$col3, $col4 ,$col8, $col9, $col5, $col6, $col7, $col10]);
 
         // TODO: remove setFromDb() and manually define Fields
         //$this->crud->setFromDb();
@@ -258,7 +267,17 @@ class ClientCrudController extends CrudController
             'default'    => Str::random(8),
         ];
         
-        $this->crud->addFields([$col1, $col2,$col3, $col4,$col8, $col9, $col5, $col6, $col7]);
+        $col10 =[ // n-n relationship (with pivot table)
+            'label'     => 'favories', // Table column heading
+            'type'      => 'checklist',
+            'name'      => 'produit', // the method that defines the relationship in your Model
+            'entity'    => 'produit', // the method that defines the relationship in your Model
+            'attribute' => 'nom', // foreign key attribute that is shown to user
+            'model'     => 'App\Models\produit',
+            'pivot'            => true, // on create&update, do you need to add/delete pivot table entries?]
+            'number_columns'   => 3, //can be 1,2,3,4,6 // foreign key model
+        ];
+        $this->crud->addFields([$col1, $col2,$col3, $col4 ,$col8, $col9, $col5, $col6, $col7, $col10]);
     }
 
 
@@ -312,6 +331,7 @@ class ClientCrudController extends CrudController
             'type' => 'text',
             'label' => 'Ca',
         ];
+        
 
         $this->crud->addColumns([$col1, $col2,$col8,$col3, $col4, $col5, $col6, $col7]);
     }

@@ -36,7 +36,15 @@ class Formule extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
+    public function produit()
+    {
+        return $this->belongsToMany('App\Models\Produit', 'formule_produit', 'formule_id', 'produit_id');
+    }
 
+    public function commande()
+    {
+        return $this->belongsToMany('App\Models\Commandes', 'commande_formule', 'formule_id', 'commande_id');
+    }
     /*
     |--------------------------------------------------------------------------
     | SCOPES

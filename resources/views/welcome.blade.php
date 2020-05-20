@@ -1,100 +1,66 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layout')
 
-        <title>Laravel</title>
+@section('content')
+    <div class="container-wrapper">
+        <div id="rev_slider_1_1_wrapper" class="rev_slider_wrapper fullscreen-container" data-source="gallery" style="background-color:transparent;padding:0px;">
+            <!-- START REVOLUTION SLIDER 5.3.1.5 fullscreen mode -->
+            <div id="rev_slider_1_1" class="rev_slider fullscreenbanner" style="display:none;" data-version="5.3.1.5">
+                <ul>
+                    <!-- SLIDE  -->
+                    <li data-index="rs-1" data-transition="fade" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off" data-easein="default" data-easeout="default" data-masterspeed="300" data-thumb="albertos/upload/slide4-100x50.jpg" data-rotate="0" data-saveperformance="off" data-title="Mexican" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
+                        <!-- MAIN IMAGE -->
+                        <img src="albertos/upload/slide4.jpg" alt="" title="slide4" width="2560" height="1440" data-bgposition="center center" data-kenburns="on" data-duration="10000" data-ease="Back.easeOut" data-scalestart="100" data-scaleend="120" data-rotatestart="0" data-rotateend="0" data-offsetstart="0 0" data-offsetend="0 0" class="rev-slidebg" data-no-retina>
+                        <!-- LAYERS -->
+                    </li>
+                    <!-- SLIDE  -->
+                    <li data-index="rs-2" data-transition="fade" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off" data-easein="default" data-easeout="default" data-masterspeed="300" data-thumb="albertos/upload/bg-pizza-100x50.jpg" data-rotate="0" data-saveperformance="off" data-title="Margherita" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
+                        <!-- MAIN IMAGE -->
+                        <img src="albertos/upload/bg-pizza.jpg" alt="" title="bg-pizza" width="1316" height="822" data-bgposition="center center" data-kenburns="on" data-duration="10000" data-ease="Linear.easeNone" data-scalestart="120" data-scaleend="100" data-rotatestart="0" data-rotateend="0" data-offsetstart="0 0" data-offsetend="0 0" class="rev-slidebg" data-no-retina>
+                        <!-- LAYERS -->
+                    </li>
+                    <!-- SLIDE  -->
+                    <li data-index="rs-3" data-transition="fade" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off" data-easein="default" data-easeout="default" data-masterspeed="300" data-thumb="albertos/upload/slide5-100x50.jpg" data-rotate="0" data-saveperformance="off" data-title="Classic" data-param1="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
+                        <!-- MAIN IMAGE -->
+                        <img src="albertos/upload/slide5.jpg" alt="" title="slide5" width="1800" height="1013" data-bgposition="center center" data-kenburns="on" data-duration="10000" data-ease="Back.easeOut" data-scalestart="100" data-scaleend="120" data-rotatestart="0" data-rotateend="0" data-offsetstart="0 0" data-offsetend="0 0" class="rev-slidebg" data-no-retina>
+                        <!-- LAYERS -->
+                    </li>
+                </ul>
+                <div style="" class="tp-static-layers">
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+                    <!-- LAYER NR. 1 -->
+                    <div class="tp-caption   tp-resizeme tp-static-layer" id="slider-1-layer-5" data-x="['center','center','center','center']" data-hoffset="['150','142','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['-150','-148','-60','-40']" data-fontsize="['92','92','92','50']" data-width="none" data-height="none" data-whitespace="nowrap" data-type="text" data-responsive_offset="on" data-startslide="0" data-endslide="2" data-frames='[{"delay":1000,"speed":1500,"frame":"0","from":"y:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"y:[-100%];","mask":"x:inherit;y:inherit;s:inherit;e:inherit;","ease":"nothing"}]' data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]" style="z-index: 5; white-space: nowrap; font-size: 92px; line-height: 92px; font-weight: 400; color: rgba(255, 255, 255, 1.00);font-family:Patua One;text-shadow:0px 2px 2px rgba(0, 0, 0, 0.6);">We have the Best </div>
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
+                    <!-- LAYER NR. 2 -->
+                    <div class="tp-caption   tp-resizeme tp-static-layer" id="slider-1-layer-6" data-x="['center','center','center','center']" data-hoffset="['0','110','0','0']" data-y="['middle','middle','middle','middle']" data-voffset="['-16','-16','74','70']" data-width="none" data-height="none" data-whitespace="nowrap" data-type="text" data-responsive_offset="on" data-startslide="0" data-endslide="2" data-frames='[{"delay":1500,"speed":2000,"frame":"0","from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","to":"o:1;","ease":"Power4.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]' data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[5,5,5,5]" data-paddingright="[40,40,40,40]" data-paddingbottom="[5,5,5,5]" data-paddingleft="[40,40,40,40]" style="z-index: 6; white-space: nowrap; font-size: 140px; line-height: 140px; font-weight: 400; color: rgba(250, 185, 64, 1.00);font-family:Patua One;background-color:rgba(36, 36, 36, 1.00);border-radius:10px 10px 10px 10px;">Pizza </div>
                 </div>
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+                <div class="tp-bannertimer tp-bottom" style="visibility: hidden !important;"></div>
             </div>
+
         </div>
-    </body>
-</html>
+        <!-- END REVOLUTION SLIDER -->
+        <div class="clear"></div>
+    </div>
+    <!-- end container-wrapper -->
+    <div class="footer2">
+        <div class="footer-socials">
+            <ul class="socials-sh">
+                <li>
+                    <a class="fa sh-socials-url fa-twitter" href="#" title="Twitter" target="_blank"></a>
+                </li>
+                <li>
+                    <a class="fa sh-socials-url fa-facebook" href="#" title="Facebook" target="_blank"></a>
+                </li>
+                <li>
+                    <a class="fa sh-socials-url fa-linkedin" href="#" title="LinkedIn" target="_blank"></a>
+                </li>
+                <li>
+                    <a class="fa sh-socials-url fa-google-plus" href="#" title="Google Plus" target="_blank"></a>
+                </li>
+            </ul>
+        </div>
+        <div class="footer-content">
+            @ 2017 Alberto's. Made by <a href="http://themeforest.net/user/max-themes/portfolio" title="Pego HTML Themes">Pego</a> &amp; <a href="https://HTML.org/" title="HTML Themes">HTML</a>. </div>
+    </div>
+
+@endsection
