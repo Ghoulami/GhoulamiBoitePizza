@@ -18,37 +18,69 @@
                     </thead>
                     <tbody>
                         @if (!is_null($produits))
-                            @foreach ($produits as $item)
+                            @foreach ($produits as $storedItem)
                                 <tr>
                                     <td class="p_dtl">
                                         <div class="block-stl9">
                                             <div class="img-holder">
-                                                <img src="storage/{{$item['item']['imgPath']}}" alt="" class="img-responsive">
+                                                <img src="storage/{{$storedItem['product']['imgPath']}}" alt="" class="img-responsive">
                                             </div>
                                             <div class="info-block">
-                                                <h5>{{$item['item']['nom']}}</h5>
+                                                <h5>{{$storedItem['product']['nom']}}</h5>
                                                 <p class="ab-txt-block">Aenean eget dictum justo Cras sollicitudin scelerisque.</p>
                                             </div>
                                         </div>
                                     </td>
                                     <td class="p_btn">
-                                        <a href="{{route('RemoveToCart' , ['id' => $item['item']['id']])}}" class="btn1 stl3">Remove</a>
+                                        <a href="{{route('RemoveProduct' , ['id' => $storedItem['product']['id']])}}" class="btn1 stl3">Remove</a>
                                     </td>
                                     <td class="p_price">
-                                        {{$item['item']['prix']}} MAD
+                                        {{$storedItem['product']['prix']}} MAD
                                     </td>
                                 
                                     <td class="p_ttl" style="padding: 3%">
-                                        {{$item['qty']}}
+                                        {{$storedItem['qty']}}
                                     </td>
 
                                     <td class="p_ttl">
-                                        {{$item['item']['prix'] * $item['qty']}} MAD
+                                        {{$storedItem['product']['prix'] * $storedItem['qty']}} MAD
                                     </td>
                                 </tr>
                             @endforeach 
                         @else
-                            <h3>Votre panier est vide !</h3>
+                            <h2>Votre panier est vide !</h2>
+                        @endif
+
+                        @if (!is_null($supplements))
+                            @foreach ($supplements as $storedItem)
+                                <tr>
+                                    <td class="p_dtl">
+                                        <div class="block-stl9">
+                                            <div class="img-holder">
+                                                <img src="storage/{{$storedItem['supplement']['imgPath']}}" alt="" class="img-responsive">
+                                            </div>
+                                            <div class="info-block">
+                                                <h5>{{$storedItem['supplement']['nomIngr']}}</h5>
+                                                <p class="ab-txt-block">Aenean eget dictum justo Cras sollicitudin scelerisque.</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="p_btn">
+                                        <a href="{{route('RemoveSupplement' , ['id' => $storedItem['supplement']['id']])}}" class="btn1 stl3">Remove</a>
+                                    </td>
+                                    <td class="p_price">
+                                        {{$storedItem['supplement']['prix']}} MAD
+                                    </td>
+                                
+                                    <td class="p_ttl" style="padding: 3%">
+                                        {{$storedItem['qty']}}
+                                    </td>
+
+                                    <td class="p_ttl">
+                                        {{$storedItem['supplement']['prix'] * $storedItem['qty']}} MAD
+                                    </td>
+                                </tr>
+                            @endforeach 
                         @endif
                         
                     </tbody>
@@ -101,7 +133,10 @@
                         <span class="odr-stts">{{$totale}} MAD</span>
                     </div>
                 </div>
-                <button class="btn btn1 stl2">Check out</button>
+                @auth
+                    <a href="{{route('checkout.index')}}" class="btn btn1 stl2">Check out</a> 
+                @endauth
+                
             </div>
         </div>
     </div>

@@ -3,14 +3,16 @@
 namespace App\Models;
 
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 
-class Client extends Model
+class Client extends Authenticatable
 {
+    use Notifiable;
     use CrudTrait;
 
     /*
@@ -27,6 +29,31 @@ class Client extends Model
     // protected $hidden = [];
     // protected $dates = [];
 
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'nom','prenom','adresse', 'email','login','motdepasse','ca','imgPath', 'start_date',
+    ];
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'motdepasse', 'remember_token',
+    ];
+
+
+    public function getAuthPassword()
+    {
+      return $this->motdepasse;
+    }
+    
     /*
     |--------------------------------------------------------------------------
     | FUNCTIONS

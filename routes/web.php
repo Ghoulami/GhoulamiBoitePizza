@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,28 +14,27 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+Route::get('/', function () {return view('welcome');})->name('accueil');
 
-Route::get('/menu', function () {
-    return view('menu');
-})->name('menu');
+Route::get('/menu', function () {return view('menu');})->name('menu');
+Route::get('/about', function () {return view('about');})->name('about');
 
-//Route::get('/pizzas', 'ProduitController@indexPizzas')->name('pizzas');
+Route::get('/shopping_cart', 'CartController@getShoppingCart')->name('Shopping_cart');
 
-Route::get('/about', function () {
-    return view('about');
-})->name('about');
 
 Route::get('/order', 'ProduitController@indexProduiut')->name('order');
 Route::get('/add-to-cart/{id}', 'ProduitController@getAddToCart')->name('addToCart');
-Route::get('/shopping_cart', 'ProduitController@getShoppingCart')->name('Shopping_cart');
-Route::get('/removeToCart/{id}', 'ProduitController@getRemoveToCart')->name('RemoveToCart');
+Route::get('/RemoveProduct/{id}', 'ProduitController@getRemoveProduct')->name('RemoveProduct');
+Route::get('/about_prod/{id}', 'ProduitController@getPoduit')->name('about_prod');
 
 
+Route::post('/add-to-cart/{produit_id}', 'SupplementController@postAddSupplimentAndProductToCart')->name('AddSupplimentAndProductToCart');
+Route::get('/RemoveSupplement/{id}', 'SupplementController@getRemoveSupplement')->name('RemoveSupplement');
 
-Route::get('/about_prod', function () {
-    return view('infos');
-})->name('about_prod');
+Route::post('/comment_prod/{client_id}/{produit_id}', 'commentaireController@postComment')->name('post_comment');
 
+Route::resource('/checkout', 'CheckoutController')->only(['index' , 'store']);
+Auth::routes();
+
+Route::get('/merci', function () {return view('thankyou');});
+Route::get('/print', 'InvoiceController@printInvoice')->name('printInvoice');

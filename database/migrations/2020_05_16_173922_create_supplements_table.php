@@ -17,6 +17,7 @@ class CreateSupplementsTable extends Migration
             $table->id();
             $table->string("nomIngr");
             $table->float("prix");
+            $table->text('imgPath');
             $table->timestamps();
         });
     }

@@ -36,14 +36,14 @@
     <div class="animsition global-wrapper">
         <div id="header" class="header-wrapper">
             <div class="logo">
-                <a href="{{route('home')}}" title="ALBERTOS - Pizza HTML Theme"><img class="logoImage" src="albertos/images/logo.png" alt="ALBERTOS - Pizza HTML Theme" /><img class="logoImageRetina" src="albertos/images/logo-retina.png" alt="ALBERTOS - Pizza HTML Theme" /></a>
+                <a href="{{route('accueil')}}" title="ALBERTOS - Pizza HTML Theme"><img class="logoImage" src="albertos/images/logo.png" alt="ALBERTOS - Pizza HTML Theme" /><img class="logoImageRetina" src="albertos/images/logo-retina.png" alt="ALBERTOS - Pizza HTML Theme" /></a>
                 <div class="clear"></div>
             </div>
             <div class="menu-wrapper">
                 <div class="main-menu">
                     <div class="menu-main-nav-menu-container">
                         <ul id="menu-main-nav-menu" class="sf-menu">
-                            <li class="menu-item menu-item-home {{Request::path() === '/' ? 'current-menu-item current_page_item' : ''}}"><a href="{{route('home')}}">Home</a></li>
+                            <li class="menu-item menu-item-home {{Request::path() === '/' ? 'current-menu-item current_page_item' : ''}}"><a href="{{route('accueil')}}">Home</a></li>
                             <li class="menu-item {{Request::path() === 'menu' ? 'current-menu-item current_page_item': ''}}"><a href="{{route('menu')}}">Menu</a></li>
                             <li class="menu-item {{Request::path() === 'order' ? 'current-menu-item current_page_item': ''}}"><a href="{{route('order')}}">Demande en ligne</a></li>
                             <li class="menu-item {{Request::path() === 'about' ? 'current-menu-item current_page_item': ''}}"><a href="{{route('about')}}">About us</a></li>
@@ -81,7 +81,7 @@
         <div class="mobile-menu-wrapper">
             <div class="menu-main-nav-menu-container">
                 <ul id="menu-main-nav-menu-1" class="mobile-menu">
-                    <li class="menu-item menu-item-home {{Request::path() === '/' ? 'current-menu-item current_page_item' : ''}}"><a href="{{route('home')}}">Home</a></li>
+                    <li class="menu-item menu-item-home {{Request::path() === '/' ? 'current-menu-item current_page_item' : ''}}"><a href="{{route('accueil')}}">Home</a></li>
                     <li class="menu-item {{Request::path() === 'menu' ? 'current-menu-item current_page_item': ''}}"><a href="{{route('menu')}}">Menu</a></li>
                     <li class="menu-item {{Request::path() === 'ordrer' ? 'current-menu-item current_page_item': ''}}"><a href="#">Demande en ligne</a></li>
                     <li class="menu-item {{Request::path() === 'about' ? 'current-menu-item current_page_item': ''}}"><a href="{{route('about')}}">About us</a></li>

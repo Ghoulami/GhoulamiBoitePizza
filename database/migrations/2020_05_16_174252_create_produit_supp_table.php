@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSuppProduitTable extends Migration
+class CreateProduitSuppTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateSuppProduitTable extends Migration
      */
     public function up()
     {
-        Schema::create('supp_produit', function (Blueprint $table) {
+        Schema::create('produit_supplement', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedBigInteger('supplement_id')->nullable();
             $table->foreign('supplement_id')->references('id')->on('supplements')->onDelete('cascade');
@@ -21,7 +21,7 @@ class CreateSuppProduitTable extends Migration
             $table->unsignedInteger('produit_id')->nullable();
             $table->foreign('produit_id')->references('id')->on('produits')->onDelete('cascade');
 
-            $table->unique(['supplement_id','produit_id']);
+            $table->unique(['produit_id','supplement_id',]);
             $table->timestamps();
         });
     }
@@ -33,6 +33,6 @@ class CreateSuppProduitTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('supp_produit');
+        Schema::dropIfExists('commande_produit_supplement');
     }
 }

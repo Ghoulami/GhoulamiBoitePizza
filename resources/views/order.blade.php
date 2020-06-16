@@ -90,7 +90,7 @@
                     <p class="price"><span>{{$produit->prix}} MAD</span> <del>{{$produit->prix}} MAD</del></p>
                 </div>
                 <div class="btn-sec">
-                    <a href="{{route('about_prod')}}" class="btn4">Plus de détails</a>
+                    <a href="{{route('about_prod', ['id' => $produit->id])}}" class="btn4">Plus de détails</a>
                     <a href="{{route('addToCart' , ['id' => $produit->id])}}" class="btn4">ajouter au panier</a>
                 </div>
                 <span class="nonveg veg-nonveg"></span>
@@ -106,7 +106,7 @@
                     <p class="price"><span>{{$produit->prix}} MAD</span> <del>{{$produit->prix}} MAD</del></p>
                 </div>
                 <div class="btn-sec">
-                    <a href="{{route('about_prod')}}" class="btn4">Plus de détails</a>
+                    <a href="{{route('about_prod', ['id' => $produit->id])}}" class="btn4">Plus de détails</a>
                     <a href="{{route('addToCart' , ['id' => $produit->id])}}" class="btn4">ajouter au panier</a>
                 </div>
                 <span class="nonveg veg-nonveg"></span>
@@ -129,7 +129,7 @@
                     <p class="price"><span>{{$produit->prix}} MAD</span> <del>{{$produit->prix}} MAD</del></p>
                 </div>
                 <div class="btn-sec">
-                    <a href="{{route('about_prod')}}" class="btn4">Plus de détails</a>
+                    <a href="{{route('about_prod', ['id' => $produit->id])}}" class="btn4">Plus de détails</a>
                     <a href="{{route('addToCart' , ['id' => $produit->id])}}" class="btn4">ajouter au panier</a>
                 </div>
                 <span class="nonveg veg-nonveg"></span>
@@ -145,7 +145,7 @@
                     <p class="price"><span>{{$produit->prix}} MAD</span> <del>{{$produit->prix}} MAD</del></p>
                 </div>
                 <div class="btn-sec">
-                    <a href="{{route('about_prod')}}" class="btn4">Plus de détails</a>
+                    <a href="{{route('about_prod', ['id' => $produit->id])}}" class="btn4">Plus de détails</a>
                     <a href="{{route('addToCart' , ['id' => $produit->id])}}" class="btn4">ajouter au panier</a>
                 </div>
                 <span class="nonveg veg-nonveg"></span>
@@ -168,7 +168,7 @@
                     <p class="price"><span>{{$produit->prix}} MAD</span> <del>{{$produit->prix}} MAD</del></p>
                 </div>
                 <div class="btn-sec">
-                    <a href="{{route('about_prod')}}" class="btn4">Plus de détails</a>
+                    <a href="{{route('about_prod', ['id' => $produit->id])}}" class="btn4">Plus de détails</a>
                     <a href="{{route('addToCart' , ['id' => $produit->id])}}" class="btn4">ajouter au panier</a>
                 </div>
                 <span class="nonveg veg-nonveg"></span>
@@ -184,7 +184,7 @@
                     <p class="price"><span>{{$produit->prix}} MAD</span> <del>{{$produit->prix}} MAD</del></p>
                 </div>
                 <div class="btn-sec">
-                    <a href="{{route('about_prod')}}" class="btn4">Plus de détails</a>
+                    <a href="{{route('about_prod', ['id' => $produit->id])}}" class="btn4">Plus de détails</a>
                     <a href="{{route('addToCart' , ['id' => $produit->id])}}" class="btn4">ajouter au panier</a>
                 </div>
                 <span class="nonveg veg-nonveg"></span>
@@ -207,7 +207,7 @@
                     <p class="price"><span>{{$produit->prix}} MAD</span> <del>{{$produit->prix}} MAD</del></p>
                 </div>
                 <div class="btn-sec">
-                    <a href="{{route('about_prod')}}" class="btn4">Plus de détails</a>
+                    <a href="{{route('about_prod', ['id' => $produit->id])}}" class="btn4">Plus de détails</a>
                     <a href="{{route('addToCart' , ['id' => $produit->id])}}" class="btn4">ajouter au panier</a>
                 </div>
                 <span class="nonveg veg-nonveg"></span>
@@ -223,7 +223,7 @@
                     <p class="price"><span>{{$produit->prix}} MAD</span> <del>{{$produit->prix}} MAD</del></p>
                 </div>
                 <div class="btn-sec">
-                    <a href="{{route('about_prod')}}" class="btn4">Plus de détails</a>
+                    <a href="{{route('about_prod', ['id' => $produit->id])}}" class="btn4">Plus de détails</a>
                     <a href="{{route('addToCart' , ['id' => $produit->id])}}" class="btn4">ajouter au panier</a>
                 </div>
                 <span class="nonveg veg-nonveg"></span>
@@ -246,7 +246,7 @@
                     <p class="price"><span>{{$produit->prix}} MAD</span> <del>{{$produit->prix}} MAD</del></p>
                 </div>
                 <div class="btn-sec">
-                    <a href="{{route('about_prod')}}" class="btn4">Plus de détails</a>
+                    <a href="{{route('about_prod', ['id' => $produit->id])}}" class="btn4">Plus de détails</a>
                     <a href="{{route('addToCart' , ['id' => $produit->id])}}" class="btn4">ajouter au panier</a>
                 </div>
                 <span class="nonveg veg-nonveg"></span>
@@ -262,7 +262,7 @@
                     <p class="price"><span>{{$produit->prix}} MAD</span> <del>{{$produit->prix}} MAD</del></p>
                 </div>
                 <div class="btn-sec">
-                    <a href="{{route('about_prod')}}" class="btn4">Plus de détails</a>
+                    <a href="{{route('about_prod', ['id' => $produit->id])}}" class="btn4">Plus de détails</a>
                     <a href="{{route('addToCart' , ['id' => $produit->id])}}" class="btn4">ajouter au panier</a>
                 </div>
                 <span class="nonveg veg-nonveg"></span>
@@ -285,7 +285,7 @@
                     <p class="price"><span>{{$produit->prix}} MAD</span> <del>{{$produit->prix}} MAD</del></p>
                 </div>
                 <div class="btn-sec">
-                    <a href="{{route('about_prod')}}" class="btn4">Plus de détails</a>
+                    <a href="{{route('about_prod', ['id' => $produit->id])}}" class="btn4">Plus de détails</a>
                     <a href="{{route('addToCart' , ['id' => $produit->id])}}" class="btn4">ajouter au panier</a>
                 </div>
                 <span class="nonveg veg-nonveg"></span>
@@ -301,7 +301,7 @@
                     <p class="price"><span>{{$produit->prix}} MAD</span> <del>{{$produit->prix}} MAD</del></p>
                 </div>
                 <div class="btn-sec">
-                    <a href="{{route('about_prod')}}" class="btn4">Plus de détails</a>
+                    <a href="{{route('about_prod', ['id' => $produit->id])}}" class="btn4">Plus de détails</a>
                     <a href="{{route('addToCart' , ['id' => $produit->id])}}" class="btn4">ajouter au panier</a>
                 </div>
                 <span class="nonveg veg-nonveg"></span>
@@ -324,7 +324,7 @@
                     <p class="price"><span>{{$produit->prix}} MAD</span> <del>{{$produit->prix}} MAD</del></p>
                 </div>
                 <div class="btn-sec">
-                    <a href="{{route('about_prod')}}" class="btn4">Plus de détails</a>
+                    <a href="{{route('about_prod', ['id' => $produit->id])}}" class="btn4">Plus de détails</a>
                     <a href="{{route('addToCart' , ['id' => $produit->id])}}" class="btn4">ajouter au panier</a>
                 </div>
                 <span class="nonveg veg-nonveg"></span>
@@ -340,7 +340,7 @@
                     <p class="price"><span>{{$produit->prix}} MAD</span> <del>{{$produit->prix}} MAD</del></p>
                 </div>
                 <div class="btn-sec">
-                    <a href="{{route('about_prod')}}" class="btn4">Plus de détails</a>
+                    <a href="{{route('about_prod', ['id' => $produit->id])}}" class="btn4">Plus de détails</a>
                     <a href="{{route('addToCart' , ['id' => $produit->id])}}" class="btn4">ajouter au panier</a>
                 </div>
                 <span class="nonveg veg-nonveg"></span>
@@ -363,7 +363,7 @@
                     <p class="price"><span>{{$produit->prix}} MAD</span> <del>{{$produit->prix}} MAD</del></p>
                 </div>
                 <div class="btn-sec">
-                    <a href="{{route('about_prod')}}" class="btn4">Plus de détails</a>
+                    <a href="{{route('about_prod', ['id' => $produit->id])}}" class="btn4">Plus de détails</a>
                     <a href="{{route('addToCart',['id' => $produit->id])}}" class="btn4">ajouter au panier</a>
                 </div>
                 <span class="nonveg veg-nonveg"></span>
@@ -379,7 +379,7 @@
                     <p class="price"><span>{{$produit->prix}} MAD</span> <del>{{$produit->prix}} MAD</del></p>
                 </div>
                 <div class="btn-sec">
-                    <a href="{{route('about_prod')}}" class="btn4">Plus de détails</a>
+                    <a href="{{route('about_prod', ['id' => $produit->id])}}" class="btn4">Plus de détails</a>
                     <a href="{{route('addToCart' , ['id' => $produit->id])}}" class="btn4">Ajouter au panier</a>
                 </div>
                 <span class="nonveg veg-nonveg"></span>

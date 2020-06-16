@@ -24,7 +24,7 @@ class CreateClientsTable extends Migration
             $table->string('motdepasse');
             $table->double('ca')->nullable();
             $table->string('imgPath')->nullable();
-            $table->date('start_date')->nullable();
+            $table->date('start_date')->nullable()->useCurrent();
             $table->timestamps();
         });
 

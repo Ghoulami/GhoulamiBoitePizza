@@ -28,16 +28,54 @@ class SupplementCrudController extends CrudController
 
     protected function setupListOperation()
     {
-        // TODO: remove setFromDb() and manually define Columns, maybe Filters
-        $this->crud->setFromDb();
+        $f1 = [
+            'name' => 'imgPath',
+            'type' => 'image',
+            'label' => 'Image',
+            'prefix' => 'storage/',
+            'height' => '80px',
+            'width' => '80px'
+        ];
+
+        $f2 = [
+            'name' => 'nomIngr',
+            'type' => 'text',
+            'label' => 'Nom Ingr',
+        ];
+        $f3 = [
+            'name' => 'prix',
+            'label' => 'Prix',
+            'type' => 'text',
+        ];
+
+        $this->crud->addColumns([$f1, $f2, $f3]);
     }
 
     protected function setupCreateOperation()
     {
         $this->crud->setValidation(SupplementRequest::class);
 
-        // TODO: remove setFromDb() and manually define Fields
-        $this->crud->setFromDb();
+        $f1 = [
+            'name' => 'imgPath',
+            'type' => 'image',
+            'label' => 'Image',
+            'prefix' => 'storage/',
+            'height' => '300px'
+        ];
+
+        $f2 = [
+            'name' => 'nomIngr',
+            'type' => 'text',
+            'label' => 'Nom Ingr',
+        ];
+        $f3 = [
+            'name' => 'prix',
+            'label' => 'Prix',
+            'type' => 'text',
+        ];
+        
+        
+        $this->crud->addFields([$f1, $f2, $f3]);
     }
 
     protected function setupUpdateOperation()

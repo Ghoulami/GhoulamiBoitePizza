@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use App\Models\Categorie;
 use App\Models\Produit;
+use App\Models\Supplement;
 use Illuminate\Http\Request;
-use Session;
 
 class ProduitController extends Controller
 {
@@ -26,58 +26,43 @@ class ProduitController extends Controller
         ]);
     }
 
+    function getPoduit ($id) {
+        $produit = Produit::with('commentaire')->find($id);;
+        $commenatires = $produit->commentaire;
+        $suppluments = Supplement::all();
+        return view('infos', [
+            'produit' =>$produit,
+            'commenatires' => $commenatires,
+            'suppluments' => $suppluments
+        ]);
+    }
+
     function getAddToCart($id , Request $request){
-        
         $oldCart = $request->session()->has('cart') ? $request->session()->get('cart') : null;
         $product = Produit::find($id);
         $cart = new Cart($oldCart);
-        $cart->add($product, $product->id);
-        //dd($cart);
+        $cart->addProduit($product, $product->id);
         $request->session()->put('cart', $cart);
-        //dd($request->session()->get('cart'));
-        //$request->session()->forget('cart');
         return back()->with('success','Item created successfully!');
     }
 
-    function getRemoveToCart($id , Request $request){
+    
+    function getRemoveProduct($id , Request $request){
         
         $cart = $request->session()->get('cart');
-        $removedItem = $cart->items[$id];
-        $removedItem['qty']--;
-        $removedItem['price'] = $removedItem['item']['prix'] * $removedItem['qty'];
-        $cart->totalQty--;
-        $cart->totalPrice -= $removedItem['item']['prix'];
-        $cart->items[$id] = $removedItem;
-        if ($removedItem['qty'] == 0){
-            unset($cart->items[$id]);
-        }
+        $removedItem = $cart->products[$id];
+        $cart->totalQty-=  $removedItem['qty'];
+        $cart->totalPrice -= $removedItem['product']['prix'] * $removedItem['qty'];
+        $cart->products[$id] = $removedItem;
+        unset($cart->products[$id]);
 
-        if(empty($cart->items)){
+        if(empty($cart->supplements) && empty($cart->products)){
             $request->session()->forget('cart');
         }else{
             $request->session()->put('cart', $cart);
         }
         
         return back()->with('success','Item created successfully!');
-    }
-
-    function getShoppingCart(Request $request) {
-        //dd($request->session()->get('cart'));
-        //$request->session()->forget('cart');
-        if (!Session ::has('cart')){
-            return view('carte' ,[
-                'produits' => null,
-                'totale' => 0,
-                'qty'=> 0,
-            ]);
-        }
-
-        $cart = $request->session()->get('cart');
-        return view('carte' ,[
-            'produits' => $cart->items,
-            'totale' => $cart->totalPrice,
-            'qty'=> $cart->totalQty
-        ]);
     }
 
 }

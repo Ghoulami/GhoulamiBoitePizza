@@ -36,13 +36,28 @@ class Commandes extends Model
     */
     public function formule()
     {
-        return $this->belongsToMany('App\Models\Formule', 'commande_formule', 'commande_id', 'formule_id');
+        return $this->belongsToMany('App\Models\Formule', 'commande_formule', 
+        'commande_id', 'formule_id');
     }
 
     public function produit()
     {
-        return $this->belongsToMany('App\Models\Formule', 'commande_produit', 'commande_id', 'produit_id');
+        return $this->belongsToMany('App\Models\Formule', 'commande_produit', 
+        'commande_id', 'produit_id');
     }
+
+    public function supplement()
+    {
+        return $this->belongsToMany('App\Models\Supplement', 'commande_suppliment',
+         'commande_id', 'supplement_id');
+    }
+
+
+    public function category()
+    {
+        return $this->belongsTo(Client::class , 'client_id' , 'id');
+    }
+
     /*
     |--------------------------------------------------------------------------
     | SCOPES

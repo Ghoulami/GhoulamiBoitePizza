@@ -15,11 +15,13 @@ class CreateCommandesTable extends Migration
     {
         Schema::create('commandes', function (Blueprint $table) {
             $table->id();
-            $table->dateTime('date');
+            $table->dateTime('date')->useCurrent();;
             $table->text('adressLiv');
             $table->string('type');
             $table->boolean('realise');
             $table->string('secteur');
+            $table->integer('qty_total');
+            $table->prixTotal('float');
             $table->timestamps();
 
             $table->unsignedBigInteger('client_id');

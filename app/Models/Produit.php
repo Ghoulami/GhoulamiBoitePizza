@@ -44,7 +44,7 @@ class Produit extends Model
 
     public function commentaire()
     {
-        return $this->hasMany('App\Models\Commentaire', 'id');
+        return $this->hasMany(Commentaire::class,'produit_id' , 'id');
     }
 
     public function client()
@@ -59,7 +59,7 @@ class Produit extends Model
 
     public function supplement()
     {
-        return $this->belongsToMany('App\Models\Supplement', 'supp_produit', 'produit_id', 'supplement_id');
+        return $this->belongsToMany('App\Models\Supplement', 'commande_suppliment', 'produit_id', 'supplement_id');
     }
 
     public function formule()
